@@ -6,7 +6,7 @@
   ],
   /* shadcn */
   "compilerOptions": {
-    "baseUrl": ".",
+    /* "baseUrl": ".",*/
     "paths": {
       "@/*": ["./src/*"]
     }
