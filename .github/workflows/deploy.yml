@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # 當你 push 到 main 分支時觸發
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -15,16 +15,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          # 指定 cache 尋找的路徑
           cache: 'npm'
+          cache-dependency-path: client-app/react/package-lock.json
 
       - name: Install dependencies
+        # 使用 working-directory 指定路徑
+        working-directory: client-app/react
         run: npm install
 
       - name: Build
+        working-directory: client-app/react
         run: npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist # Vite 預設打包輸出的資料夾
-          branch: gh-pages # 要部署到的分支
+          folder: client-app/react/dist # 注意這裡也要改路徑
+          branch: gh-pages
