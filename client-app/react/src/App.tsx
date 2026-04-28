@@ -1,31 +1,21 @@
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AppLayout from '@/components/layout/AppLayout';
+import HomePage from "@/pages/HomePage";
+import NotFoundPage from "@/pages/NotFoundPage";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Dann</h1>
-      <Card size="sm" className="mx-auto w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <CardAction>Card Action</CardAction>
-        </CardHeader>
-        <CardContent>
-          <p>Card Content</p>
-        </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
-      </Card>
-    </div>
+    <>
+      <BrowserRouter basename="/personal-website">
+        <Routes>         
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<HomePage />} />            
+            <Route path="home" element={<HomePage />} />       
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   )
 }
 
