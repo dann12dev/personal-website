@@ -13,7 +13,8 @@ const Header = ({ className }: HeaderProps) => {
 
   return (
     <>
-      <header className={cn("flex items-center px-4 border-2 top-0 left-0 z-50 app-region-drag", className)}>   
+      <header className={cn("px-8 items-center top-0 left-0 h-20", className)}>   
+        <div>Header</div>
       </header>
     </>
   );

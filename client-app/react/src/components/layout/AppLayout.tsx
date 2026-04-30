@@ -5,12 +5,12 @@ import Footer from "@/components/layout/Footer";
 const AppLayout = () => {
   return (
     <>
-      <div className="flex flex-col h-screen">
-            <main className="container mx-auto p-2">
-              <Header className="h-8"></Header>
-                <Outlet />
-              <Footer></Footer>  
-            </main>
+      <div className="flex flex-col h-screen min-w-xs">
+        <Header className="bg-amber-500"></Header>
+        <main className="bg-blue-300">
+          <Outlet />
+        </main>
+        <Footer className="bg-amber-500"></Footer>         
       </div>
     </>
   );

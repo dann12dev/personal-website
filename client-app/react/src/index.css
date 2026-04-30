@@ -97,16 +97,6 @@
   --sidebar-ring: oklch(0.708 0 0)
 }
 
-#root {
-  max-width: 100%;
-  margin: 0 auto;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
 }
