@@ -6,11 +6,11 @@ const AppLayout = () => {
   return (
     <>
       <div className="flex flex-col h-screen min-w-xs">
-        <Header className="bg-amber-500"></Header>
-        <main className="bg-blue-300">
+        <Header></Header>
+        <main className="h-screen">
           <Outlet />
         </main>
-        <Footer className="bg-amber-500"></Footer>         
+        <Footer></Footer>         
       </div>
     </>
   );
