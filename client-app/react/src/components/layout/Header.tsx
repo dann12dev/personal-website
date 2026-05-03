@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import useDarkMode from "@/hooks/useDarkMode";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import NavMenu from "./NavMenu";
 
 type HeaderProps = {
   className?: string;
@@ -13,8 +14,9 @@ const Header = ({ className }: HeaderProps) => {
 
   return (
     <>
-      <header className={cn("px-8 items-center top-0 left-0 h-20", className)}>   
-        <div>Header</div>
+      <header className={cn("px-8 top-0 left-0 h-20 flex items-center", className)}>   
+        <div className="mx-2">Header</div>
+        <NavMenu></NavMenu>
       </header>
     </>
   );
