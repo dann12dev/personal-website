@@ -24,6 +24,8 @@ import {
 } from "@/components/layout/ResponsiveContainer";
 import { useEffect } from "react";
 import MOBILE_BREAKPOINT from "@/hooks/use-mobile";
+import { Menu, X } from "lucide-react";
+import { Button } from "../ui/button";
 
 // 測試用資料陣列
 const listItems: NavItem[] = [
@@ -77,6 +79,21 @@ const ListItem = ({ items, className = "" }: ListItemProps) => {
   );
 };
 
+const CustomSidebarTrigger = ({menuType}: {menuType: 'open' | 'close'}) => {
+  const { toggleSidebar } = useSidebar()
+
+  return (
+    <Button 
+      variant="ghost" 
+      size="icon" 
+      onClick={toggleSidebar}
+    >
+      {/* 這裡可以根據開關狀態切換圖示，或是固定使用一個 */}
+      {menuType === 'open' ? <Menu className="h-6 w-6" />: <X className="h-6 w-6" />}
+    </Button>
+  )
+}
+
 const NavMenu = () => {
   const { setOpen, setOpenMobile } = useSidebar();
   useEffect(() => {
@@ -126,8 +143,9 @@ const NavMenu = () => {
       </DesktopOnly>
 
       {/* 小版樣式 */}
-      <MobileOnly>
-        <SidebarTrigger></SidebarTrigger>
+      <MobileOnly className="ml-auto">
+        <CustomSidebarTrigger menuType="open"></CustomSidebarTrigger>
+        {/* <SidebarTrigger className="flex justify-end"></SidebarTrigger> */}
         <Sidebar
           side="right"
           collapsible="offcanvas"
@@ -136,9 +154,9 @@ const NavMenu = () => {
         >
           <SidebarHeader className="bg-background">
             <SidebarMenu>
-              <SidebarMenuItem>
+              <SidebarMenuItem className="ml-auto pr-6 pt-4">
                 <SidebarMenuButton asChild isActive>
-                  <a href="#">Home</a>
+                  <CustomSidebarTrigger menuType="close"></CustomSidebarTrigger>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
