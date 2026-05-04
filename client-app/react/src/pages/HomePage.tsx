@@ -2,7 +2,7 @@ const HomePage = () => {
   return (
     <div>
       {/* 主題展示區 */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 h-screen">
         <h1 className="text-4xl tracking-tight sm:text-5xl">
           首頁
         </h1>

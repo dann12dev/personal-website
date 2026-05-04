@@ -4,18 +4,23 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 
 import {
-    SidebarProvider,
-    Sidebar,
-    SidebarHeader,
-    SidebarContent,
-    SidebarMenu,
-    SidebarMenuItem,
-    SidebarMenuButton,
-    SidebarTrigger
-} from "@/components/ui/sidebar"
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+
+import {
+  DesktopOnly,
+  MobileOnly,
+} from "@/components/layout/ResponsiveContainer";
 
 // 測試用資料陣列
 const listItems: NavItem[] = [
@@ -70,58 +75,60 @@ const ListItem = ({ items, className = "" }: ListItemProps) => {
 };
 
 const NavMenu = () => {
-//   const {toggleSidebar}= useSidebar()
+  //   const {toggleSidebar}= useSidebar()
   return (
     <>
-        {/* 大版樣式 */}
+      {/* 大版樣式 */}
+      <DesktopOnly>
         <NavigationMenu>
-            <NavigationMenuList>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ListItem items={listItems} className="w-96 p-4"></ListItem>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ListItem items={listItems} className="w-96 p-4"></ListItem>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ListItem items={listItems} className="w-96 p-4"></ListItem>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ListItem items={listItems} className="w-96 p-4"></ListItem>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-            </NavigationMenuList>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ListItem items={listItems} className="w-96 p-4"></ListItem>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ListItem items={listItems} className="w-96 p-4"></ListItem>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ListItem items={listItems} className="w-96 p-4"></ListItem>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ListItem items={listItems} className="w-96 p-4"></ListItem>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
         </NavigationMenu>
+      </DesktopOnly>
 
-        {/* 小版樣式 */}       
+      {/* 小版樣式 */}
+      <MobileOnly>
         <SidebarProvider open={false}>
-            <SidebarTrigger></SidebarTrigger>
-            <Sidebar side="right">
-                <SidebarHeader>
-                    <SidebarMenu>
-                        <SidebarMenuItem>
-                            <ListItem items={listItems} className="w-full p-2"></ListItem>
-                            <SidebarMenuButton asChild isActive>
-                                <a href="#">Home</a>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
-                    </SidebarMenu>
-                </SidebarHeader>
-                <SidebarContent>
-
-                </SidebarContent>
-            </Sidebar>
+          <SidebarTrigger></SidebarTrigger>
+          <Sidebar side="right">
+            <SidebarHeader>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <ListItem items={listItems} className="w-full p-2"></ListItem>
+                  <SidebarMenuButton asChild isActive>
+                    <a href="#">Home</a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarHeader>
+            <SidebarContent></SidebarContent>
+          </Sidebar>
         </SidebarProvider>
+      </MobileOnly>
     </>
   );
 };
