@@ -30,17 +30,17 @@ import { Button } from "../ui/button";
 // 測試用資料陣列
 const listItems: NavItem[] = [
   {
-    href: "/docs",
+    href: "/personal-website/example",
     title: "Introduction",
     description: "Re-usable components built with Tailwind CSS.",
   },
   {
-    href: "/docs/installation",
+    href: "/personal-website/example",
     title: "Installation",
     description: "How to install dependencies and structure your app.",
   },
   {
-    href: "/docs/primitives/typography",
+    href: "/personal-website/example",
     title: "Typography",
     description: "Styles for headings, paragraphs, lists...etc",
   },

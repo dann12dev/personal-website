@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 
 const ExamplePage = () => {
   return (
-    <div>
+    <div className='h-[50rem]'>
       <div className="text-center mb-12 bg-background">
         <h1 className="text-4xl tracking-tight sm:text-5xl">
           元件範例
