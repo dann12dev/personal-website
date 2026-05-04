@@ -31,7 +31,7 @@ const ScrollToTop = () => {
   return (
     <div
       className={cn(
-        "fixed bottom-8 right-8 z-[60] transition-opacity duration-300",
+        "fixed bottom-8 right-8 z-40 transition-opacity duration-300",
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none",
       )}
     >
