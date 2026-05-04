@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardAction,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 
 import {
   Carousel,
@@ -18,6 +27,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+
+import { Badge } from '@/components/ui/badge';
 
 const accordionItems = [
   {
@@ -102,6 +113,31 @@ export function AccordionMultiple() {
   )
 }
 
+export function CardImage() {
+  return (
+    <Card className="relative mx-auto w-full max-w-sm pt-0">
+      <div className="absolute z-30 inset-0 aspect-video bg-black/35" />
+      <img
+        src="/personal-website/home"
+        alt="Event cover"
+        className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
+      />
+      <CardHeader>
+        <CardAction>
+          <Badge variant="secondary">Featured</Badge>
+        </CardAction>
+        <CardTitle>Design systems meetup</CardTitle>
+        <CardDescription>
+          A practical talk on component APIs, accessibility, and shipping
+          faster.
+        </CardDescription>
+      </CardHeader>
+      <CardFooter>
+        <Button className="w-full">View Event</Button>
+      </CardFooter>
+    </Card>
+  )
+}
 
 const ExamplePage = () => {
   return (
@@ -119,7 +155,7 @@ const ExamplePage = () => {
         <Button variant={"link"}>link</Button>
 
         <h2>Card</h2>
-        <Card className='m-2'>Card</Card>
+        <div>{CardImage()}</div>
 
         <h2>背景顏色&文字</h2>
         <div className='bg-card'>
