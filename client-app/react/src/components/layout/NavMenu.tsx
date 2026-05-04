@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import {
-  SidebarProvider,
+  SidebarGroup,
   Sidebar,
   SidebarHeader,
   SidebarContent,
@@ -15,12 +15,15 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 import {
   DesktopOnly,
   MobileOnly,
 } from "@/components/layout/ResponsiveContainer";
+import { useEffect } from "react";
+import MOBILE_BREAKPOINT from "@/hooks/use-mobile";
 
 // 測試用資料陣列
 const listItems: NavItem[] = [
@@ -75,7 +78,19 @@ const ListItem = ({ items, className = "" }: ListItemProps) => {
 };
 
 const NavMenu = () => {
-  //   const {toggleSidebar}= useSidebar()
+  const { setOpen, setOpenMobile } = useSidebar();
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= MOBILE_BREAKPOINT) {
+        // 當視窗變大，不再是手機版時，強制關閉所有選單狀態
+        setOpen(false);
+        setOpenMobile(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setOpen, setOpenMobile]);
   return (
     <>
       {/* 大版樣式 */}
@@ -112,22 +127,34 @@ const NavMenu = () => {
 
       {/* 小版樣式 */}
       <MobileOnly>
-        <SidebarProvider open={false}>
-          <SidebarTrigger></SidebarTrigger>
-          <Sidebar side="right">
-            <SidebarHeader>
+        <SidebarTrigger></SidebarTrigger>
+        <Sidebar
+          side="right"
+          collapsible="offcanvas"
+          variant="sidebar"
+          className="z-50 h-full bg-background"
+        >
+          <SidebarHeader className="bg-background">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive>
+                  <a href="#">Home</a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarHeader>
+          <SidebarContent className="bg-background">
+            <SidebarGroup>
               <SidebarMenu>
                 <SidebarMenuItem>
                   <ListItem items={listItems} className="w-full p-2"></ListItem>
-                  <SidebarMenuButton asChild isActive>
-                    <a href="#">Home</a>
-                  </SidebarMenuButton>
+                  <ListItem items={listItems} className="w-full p-2"></ListItem>
+                  <ListItem items={listItems} className="w-full p-2"></ListItem>
                 </SidebarMenuItem>
               </SidebarMenu>
-            </SidebarHeader>
-            <SidebarContent></SidebarContent>
-          </Sidebar>
-        </SidebarProvider>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
       </MobileOnly>
     </>
   );

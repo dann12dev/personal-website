@@ -3,5 +3,5 @@ export const DesktopOnly = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const MobileOnly = ({ children }: { children: React.ReactNode }) => (
-  <div className="block md:hidden">{children}</div>
+  <div className="block lg:hidden">{children}</div>
 );
