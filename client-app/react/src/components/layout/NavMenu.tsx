@@ -1,9 +1,7 @@
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
-  NavigationMenuTrigger,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
@@ -57,33 +55,6 @@ type NavItem = {
   description?: string;
 };
 
-type ListItemProps = {
-  items: NavItem[];
-  className?: string;
-};
-
-const ListItem = ({ items, className = "" }: ListItemProps) => {
-  return (
-    <ul className={`grid ${className}`}>
-      {items.map((item, index) => (
-        <li key={index}>
-          <a
-            href={item.href}
-            className="block rounded-md p-3 hover:bg-accent hover:text-accent-foreground"
-          >
-            <div className="text-sm font-medium leading-none">{item.title}</div>
-            {item.description && (
-              <p className="text-sm text-muted-foreground mt-1">
-                {item.description}
-              </p>
-            )}
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
 const CustomSidebarTrigger = ({ menuType }: { menuType: "open" | "close" }) => {
   const { toggleSidebar } = useSidebar();
 
@@ -119,39 +90,19 @@ const NavMenu = () => {
       <DesktopOnly>
         <NavigationMenu>
           <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                asChild
-                className={cn(navigationMenuTriggerStyle(), "group bg-transparent hover:bg-transparent focus:bg-transparent relative")}
-              >
-                <Link to="/example">
-                  example
-                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-primary scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                </Link>
-              </NavigationMenuLink>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ListItem items={listItems} className="w-96 p-4"></ListItem>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ListItem items={listItems} className="w-96 p-4"></ListItem>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ListItem items={listItems} className="w-96 p-4"></ListItem>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ListItem items={listItems} className="w-96 p-4"></ListItem>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            {listItems.map((item, index) => (
+              <NavigationMenuItem key={index}>
+                <NavigationMenuLink
+                  asChild
+                  className={cn(navigationMenuTriggerStyle(), "group/item bg-transparent hover:bg-transparent focus:bg-transparent relative")}
+                >
+                  <Link to={item.href}>
+                    {item.title}
+                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-primary scale-x-0 transition-transform duration-300 group-hover/item:scale-x-100" />
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
       </DesktopOnly>
@@ -179,9 +130,23 @@ const NavMenu = () => {
             <SidebarGroup>
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <ListItem items={listItems} className="w-full p-2"></ListItem>
-                  <ListItem items={listItems} className="w-full p-2"></ListItem>
-                  <ListItem items={listItems} className="w-full p-2"></ListItem>
+                  <ul>
+                    {listItems.map((item, index) => (
+                      <li key={index}>
+                        <a
+                          href={item.href}
+                          className="block rounded-md p-3 hover:bg-accent hover:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none">{item.title}</div>
+                          {item.description && (
+                            <p className="text-sm text-muted-foreground mt-1">
+                              {item.description}
+                            </p>
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </SidebarMenuItem>
               </SidebarMenu>
             </SidebarGroup>
