@@ -4,6 +4,8 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
 import {
@@ -26,6 +28,9 @@ import { useEffect } from "react";
 import MOBILE_BREAKPOINT from "@/hooks/use-mobile";
 import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
+
+import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 // 測試用資料陣列
 const listItems: NavItem[] = [
@@ -79,20 +84,20 @@ const ListItem = ({ items, className = "" }: ListItemProps) => {
   );
 };
 
-const CustomSidebarTrigger = ({menuType}: {menuType: 'open' | 'close'}) => {
-  const { toggleSidebar } = useSidebar()
+const CustomSidebarTrigger = ({ menuType }: { menuType: "open" | "close" }) => {
+  const { toggleSidebar } = useSidebar();
 
   return (
-    <Button 
-      variant="ghost" 
-      size="icon" 
-      onClick={toggleSidebar}
-    >
+    <Button variant="ghost" size="icon" onClick={toggleSidebar}>
       {/* 這裡可以根據開關狀態切換圖示，或是固定使用一個 */}
-      {menuType === 'open' ? <Menu className="h-6 w-6" />: <X className="h-6 w-6" />}
+      {menuType === "open" ? (
+        <Menu className="h-6 w-6" />
+      ) : (
+        <X className="h-6 w-6" />
+      )}
     </Button>
-  )
-}
+  );
+};
 
 const NavMenu = () => {
   const { setOpen, setOpenMobile } = useSidebar();
@@ -115,6 +120,15 @@ const NavMenu = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
+              <NavigationMenuLink
+                asChild
+                className={cn(navigationMenuTriggerStyle(), "group bg-transparent hover:bg-transparent focus:bg-transparent relative")}
+              >
+                <Link to="/example">
+                  example
+                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-primary scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                </Link>
+              </NavigationMenuLink>
               <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ListItem items={listItems} className="w-96 p-4"></ListItem>
