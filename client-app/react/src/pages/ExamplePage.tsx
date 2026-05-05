@@ -141,7 +141,7 @@ export function CardImage() {
 
 const ExamplePage = () => {
   return (
-    <div className='container min-h-[50rem]'>
+    <div className='container min-h-[50rem] mx-auto'>
       <div className="text-center mb-12 bg-background">
         <h1 className="text-4xl tracking-tight sm:text-5xl">
           元件範例

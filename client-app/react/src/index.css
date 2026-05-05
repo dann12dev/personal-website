@@ -116,8 +116,8 @@
    Tailwind Theme Mapping
 ========================= */
 @theme inline {
-  --font-sans: "Inter", "Noto Sans TC", sans-serif;
-  --font-heading: "Inter", "Noto Sans TC", sans-serif;
+  --font-sans: "Noto Serif TC", "Noto Sans TC", sans-serif;
+  --font-heading: "Noto Serif TC", "Noto Sans TC", sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
