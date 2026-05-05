@@ -12,7 +12,7 @@ const AppLayout = () => {
         {/* <SidebarOverlay></SidebarOverlay> */}
         <div className="flex flex-col min-h-screen w-full min-w-xs overflow-x-clip">
           <Header className="sticky z-50"></Header>
-          <main className="flex-1 w-full px-4 md:px-8 lg:px-12">
+          <main className="flex-1 w-full">
             <Outlet />
           </main>
           <ScrollToTop></ScrollToTop>
