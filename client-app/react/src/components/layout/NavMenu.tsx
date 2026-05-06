@@ -43,7 +43,7 @@ const listItems: NavItem[] = [
     description: "How to install dependencies and structure your app.",
   },
   {
-    href: "s/example",
+    href: "/example",
     title: "Typography",
     description: "Styles for headings, paragraphs, lists...etc",
   },
@@ -133,8 +133,9 @@ const NavMenu = () => {
                   <ul>
                     {listItems.map((item, index) => (
                       <li key={index}>
-                        <a
-                          href={item.href}
+                        <Link
+                          onClick={() => {setOpenMobile(false)}}
+                          to={item.href}
                           className="block rounded-md p-3 hover:bg-accent hover:text-accent-foreground"
                         >
                           <div className="text-sm font-medium leading-none">{item.title}</div>
@@ -143,7 +144,7 @@ const NavMenu = () => {
                               {item.description}
                             </p>
                           )}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

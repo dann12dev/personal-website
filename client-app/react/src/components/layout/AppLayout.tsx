@@ -10,9 +10,9 @@ const AppLayout = () => {
     <>
       <SidebarProvider defaultOpen={false}>
         {/* <SidebarOverlay></SidebarOverlay> */}
-        <div className="flex flex-col min-h-screen w-full min-w-xs overflow-x-clip">
+        <div className="flex flex-col min-h-screen size-full min-w-xs overflow-x-clip">
           <Header className="sticky z-50"></Header>
-          <main className="flex-1 w-full">
+          <main className="flex-1 size-full">
             <Outlet />
           </main>
           <ScrollToTop></ScrollToTop>
