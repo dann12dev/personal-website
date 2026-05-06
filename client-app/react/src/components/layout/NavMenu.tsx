@@ -33,17 +33,17 @@ import { cn } from "@/lib/utils";
 // 測試用資料陣列
 const listItems: NavItem[] = [
   {
-    href: "/personal-website/example",
-    title: "Introduction",
+    href: "/example",
+    title: "Example",
     description: "Re-usable components built with Tailwind CSS.",
   },
   {
-    href: "/personal-website/example",
-    title: "Installation",
+    href: "/product",
+    title: "Product",
     description: "How to install dependencies and structure your app.",
   },
   {
-    href: "/personal-website/example",
+    href: "s/example",
     title: "Typography",
     description: "Styles for headings, paragraphs, lists...etc",
   },
