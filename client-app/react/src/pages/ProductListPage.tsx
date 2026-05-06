@@ -12,34 +12,18 @@ import { Badge } from "@/components/ui/badge";
 const ProductListPage = () => {
   return (
     <>
-      <section className="size-full -mt-20">
+      <section className="w-full h-auto -mt-20">
         <img
           src="https://picsum.photos/1200/600"
-          className="object-cover w-full h-1/3"
+          className="object-cover w-full h-96"
         ></img>
-        <div className="mx-auto text-center text-sm mt-10">
-          <p>Crafted sweetness, elevated moments</p>
-          <br />
-          <p>把午後的陽光、空氣裡的香氣，和一點點期待，揉進每一口甜裡</p>
-          <br />
-          <p>把日子的稜角磨平，藏進細膩的甜與剛好的溫柔之中</p>
-          <br />
-          <p>最後，把未來藏進，細膩的甜與剛好的溫柔之中</p>
+        <div className="mx-auto text-left text-sm mt-10 max-w-[90%] md:w-full md:text-center">
+          <ProductDescText text="Crafted sweetness, elevated moments. "></ProductDescText>
+          <ProductDescText text="把午後的陽光、空氣裡的香氣，和一點點期待，揉進每一口甜裡。"></ProductDescText>
+          <ProductDescText text="把日子的稜角磨平，藏進細膩的甜與剛好的溫柔之中。"></ProductDescText>
+          <ProductDescText text="最後，把未來藏進，細膩的甜與剛好的溫柔之中。"></ProductDescText>
         </div>
       </section>
-
-      {/* <section>
-        <div className="container mx-auto px-6 text-center text-sm md:text-base max-w-2xl">
-          <div className="flex flex-col gap-y-4 leading-relaxed tracking-wide text-justify sm:text-center">
-            <p className="whitespace-nowrap sm:whitespace-normal">
-              Crafted sweetness, elevated moments
-            </p>
-            <p>把午後的陽光、空氣裡的香氣，和一點點期待，揉進每一口甜裡</p>
-            <p>把日子的稜角磨平，藏進細膩的甜與剛好的溫柔之中</p>
-            <p>最後，把未來藏進，細膩的甜與剛好的溫柔之中</p>
-          </div>
-        </div>
-      </section> */}
 
       <section className="mt-20">
         <div className="mx-auto text-sm w-2/3">
@@ -72,6 +56,13 @@ export function CardImage() {
       </CardHeader>
     </Card>
   );
+}
+
+const ProductDescText = ({text}: {text:string}) => {
+  return (<>
+    <p className="inline leading-6 md:leading-10">{text}</p>
+    <br className="hidden md:block"></br>
+  </>);
 }
 
 export default ProductListPage;
