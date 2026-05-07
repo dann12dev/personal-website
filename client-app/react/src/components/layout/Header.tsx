@@ -8,18 +8,27 @@ import { Link } from "react-router-dom";
 type HeaderProps = {
   className?: string;
   isScrolled?: boolean;
+  isHeaderMode?: boolean;
 };
 
-const Header = ({ className, isScrolled }: HeaderProps) => {
+const Header = ({ className, isScrolled, isHeaderMode }: HeaderProps) => {
   const [isDark, setIsDark] = useState(false);
   useDarkMode(isDark);
+
+  const bgClass = isHeaderMode && !isScrolled
+    ? "bg-transparent"
+    : "bg-background";
+  const textClass = isHeaderMode && !isScrolled 
+    ? "text-background" 
+    : "text-foreground";
 
   return (
     <>
       <header
         className={cn(
-          "bg-background px-8 top-0 left-0 h-20 flex items-center",
-          isScrolled ? "bg-background": "bg-transparent text-background",
+          "bg-background px-8 top-0 left-0 h-20 flex items-center transition-all duration-400",
+          bgClass,
+          textClass,
           className,
         )}
       >

@@ -6,6 +6,7 @@ import ScrollToTop from "@/components/common/ScrollToTop";
 import { useState } from "react";
 
 const AppLayout = () => {
+  const [isHeaderMode, setIsHeaderMode] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);;
 
   return (
@@ -13,10 +14,10 @@ const AppLayout = () => {
       <SidebarProvider defaultOpen={false}>
         {/* <SidebarOverlay></SidebarOverlay> */}
         <div className="flex flex-col min-h-screen size-full min-w-xs overflow-x-clip">
-          <Header className="sticky z-50" isScrolled={isScrolled}></Header>
+          <Header className="sticky z-50" isScrolled={isScrolled} isHeaderMode={isHeaderMode}></Header>
           <div className="w-full h-px pointer-events-none" />
           <main className="flex-1 size-full">
-            <Outlet context={{ setIsScrolled }}/>
+            <Outlet context={{ setIsScrolled, setIsHeaderMode }}/>
           </main>
           <ScrollToTop></ScrollToTop>
           <Footer></Footer>
