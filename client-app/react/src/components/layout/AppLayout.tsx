@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import SidebarOverlay from "./SidebarOverlay";
-import ScrollToTop from "./ScrollToTop";
+import SidebarOverlay from "@/components/common/SidebarOverlay";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 const AppLayout = () => {
   return (

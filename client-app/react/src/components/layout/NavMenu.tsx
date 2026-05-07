@@ -21,7 +21,7 @@ import {
 import {
   DesktopOnly,
   MobileOnly,
-} from "@/components/layout/ResponsiveContainer";
+} from "@/components/common/ResponsiveContainer";
 import { useEffect } from "react";
 import MOBILE_BREAKPOINT from "@/hooks/use-mobile";
 import { Menu, X } from "lucide-react";
