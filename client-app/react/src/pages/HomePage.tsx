@@ -1,6 +1,7 @@
 import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
+import { useRef } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -9,21 +10,25 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import ScrollReveal from "@/components/common/ScrollReveal";
+import { useHeaderMode } from "@/hooks/useHeaderMode";
 
 const HomePage = () => {
+  const bannerRef = useRef<HTMLElement>(null);
+  useHeaderMode(bannerRef); // 傳入你想觀察的元件即可
+
   return (
     <div>
       <ScrollReveal>
-        <section className="w-full -mt-20 h-screen">
+        <section ref={bannerRef} className="w-full -mt-20 h-screen">
           <HeroCarousel></HeroCarousel>
         </section>
       </ScrollReveal>
 
       {/* 主題展示區 */}
       <ScrollReveal>
-        <div className="text-center mb-12 h-screen">
+        <section className="text-center mb-12 h-screen">
           <h1 className="text-4xl tracking-tight sm:text-5xl">首頁</h1>
-        </div>
+        </section>
       </ScrollReveal>
     </div>
   );

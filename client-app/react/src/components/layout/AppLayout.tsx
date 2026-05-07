@@ -2,18 +2,21 @@ import { Outlet } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import SidebarOverlay from "@/components/common/SidebarOverlay";
 import ScrollToTop from "@/components/common/ScrollToTop";
+import { useState } from "react";
 
 const AppLayout = () => {
+  const [isScrolled, setIsScrolled] = useState(false);;
+
   return (
     <>
       <SidebarProvider defaultOpen={false}>
         {/* <SidebarOverlay></SidebarOverlay> */}
         <div className="flex flex-col min-h-screen size-full min-w-xs overflow-x-clip">
-          <Header className="sticky z-50"></Header>
+          <Header className="sticky z-50" isScrolled={isScrolled}></Header>
+          <div className="w-full h-px pointer-events-none" />
           <main className="flex-1 size-full">
-            <Outlet />
+            <Outlet context={{ setIsScrolled }}/>
           </main>
           <ScrollToTop></ScrollToTop>
           <Footer></Footer>

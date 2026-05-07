@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 
 type HeaderProps = {
   className?: string;
+  isScrolled?: boolean;
 };
 
-const Header = ({ className }: HeaderProps) => {
+const Header = ({ className, isScrolled }: HeaderProps) => {
   const [isDark, setIsDark] = useState(false);
   useDarkMode(isDark);
 
@@ -18,6 +19,7 @@ const Header = ({ className }: HeaderProps) => {
       <header
         className={cn(
           "bg-background px-8 top-0 left-0 h-20 flex items-center",
+          isScrolled ? "bg-background": "bg-transparent text-background",
           className,
         )}
       >
