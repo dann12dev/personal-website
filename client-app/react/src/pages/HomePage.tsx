@@ -1,27 +1,30 @@
 import React from "react";
-import Autoplay from "embla-carousel-autoplay"
-import Fade from "embla-carousel-fade"
+import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+import ScrollReveal from "@/components/common/ScrollReveal";
 
 const HomePage = () => {
   return (
     <div>
-      <section className="w-full -mt-20 h-screen">
-        <HeroCarousel></HeroCarousel>
-      </section>
+      <ScrollReveal>
+        <section className="w-full -mt-20 h-screen">
+          <HeroCarousel></HeroCarousel>
+        </section>
+      </ScrollReveal>
+
       {/* 主題展示區 */}
-      <div className="text-center mb-12 h-screen">
-        <h1 className="text-4xl tracking-tight sm:text-5xl">
-          首頁
-        </h1>
-        
-      </div>
+      <ScrollReveal>
+        <div className="text-center mb-12 h-screen">
+          <h1 className="text-4xl tracking-tight sm:text-5xl">首頁</h1>
+        </div>
+      </ScrollReveal>
     </div>
   );
 };
@@ -31,30 +34,30 @@ const HeroCarousel = () => {
 
   return (
     <Carousel
-      opts={{ 
+      opts={{
         duration: 100, // 數值越小，切換動作觸發越快（預設通常是 25-30）
-        loop: true 
-      }} 
-      plugins={[Fade(),  Autoplay({ delay: 8000, stopOnInteraction: false })]}
+        loop: true,
+      }}
+      plugins={[Fade(), Autoplay({ delay: 8000, stopOnInteraction: false })]}
       className="m-0"
     >
       <CarouselContent className="ml-0">
         <CarouselItem className="pl-0 transition-opacity duration-1000">
-          <img 
-            src="https://picsum.photos/1200/600?random=1" 
-            className="w-full object-cover h-screen" 
+          <img
+            src="https://picsum.photos/1200/600?random=1"
+            className="w-full object-cover h-screen"
           />
         </CarouselItem>
         <CarouselItem className="pl-0 transition-opacity duration-1000">
-          <img 
-            src="https://picsum.photos/1200/600?random=2" 
-            className="w-full object-cover h-screen" 
+          <img
+            src="https://picsum.photos/1200/600?random=2"
+            className="w-full object-cover h-screen"
           />
         </CarouselItem>
         <CarouselItem className="pl-0 transition-opacity duration-1000">
-          <img 
-            src="https://picsum.photos/1200/600?random=3" 
-            className="w-full object-cover h-screen" 
+          <img
+            src="https://picsum.photos/1200/600?random=3"
+            className="w-full object-cover h-screen"
           />
         </CarouselItem>
       </CarouselContent>
@@ -62,7 +65,7 @@ const HeroCarousel = () => {
       {/* <CarouselPrevious className="left-4" />
       <CarouselNext className="right-4" /> */}
     </Carousel>
-  )
-}
+  );
+};
 
 export default HomePage;
