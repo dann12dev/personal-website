@@ -1,7 +1,6 @@
-import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +10,14 @@ import {
 } from "@/components/ui/carousel";
 import ScrollReveal from "@/components/common/ScrollReveal";
 import { useHeaderMode } from "@/hooks/useHeaderMode";
+import LoadedFocusImage from "@/components/common/LoadedFocusImage";
+import type { CarouselApi } from "@/components/ui/carousel";
+
+const bannerItems = [
+  { src: "https://picsum.photos/1200/600?random=1" },
+  { src: "https://picsum.photos/1200/600?random=2" },
+  { src: "https://picsum.photos/1200/600?random=3" },
+];
 
 const HomePage = () => {
   const bannerRef = useRef<HTMLElement>(null);
@@ -35,36 +42,46 @@ const HomePage = () => {
 };
 
 const HeroCarousel = () => {
-  // 設定插件：延遲 2000ms (2秒)，滑鼠移入時停止
+  const [api, setApi] = useState<CarouselApi>();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  // 監聽切換
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setSelectedIndex(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    onSelect(); // 初始化
+    
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
     <Carousel
-      opts={{
-        duration: 100, // 數值越小，切換動作觸發越快（預設通常是 25-30）
-        loop: true,
-      }}
-      plugins={[Fade(), Autoplay({ delay: 8000, stopOnInteraction: false })]}
+      setApi={setApi}
+      opts={{ loop: true, duration: 30 }}  // duration數值越小，切換動作觸發越快（預設通常是 25-30）
+      plugins={[Autoplay({ delay: 8000 }), Fade()]}
       className="m-0"
     >
       <CarouselContent className="ml-0">
-        <CarouselItem className="pl-0 transition-opacity duration-1000">
-          <img
-            src="https://picsum.photos/1200/600?random=1"
-            className="w-full object-cover h-screen"
-          />
-        </CarouselItem>
-        <CarouselItem className="pl-0 transition-opacity duration-1000">
-          <img
-            src="https://picsum.photos/1200/600?random=2"
-            className="w-full object-cover h-screen"
-          />
-        </CarouselItem>
-        <CarouselItem className="pl-0 transition-opacity duration-1000">
-          <img
-            src="https://picsum.photos/1200/600?random=3"
-            className="w-full object-cover h-screen"
-          />
-        </CarouselItem>
+        {bannerItems.map((item, index) => (
+          <CarouselItem
+            className="pl-0 transition-opacity duration-1000"
+            key={index}
+          >
+            <LoadedFocusImage
+              src={item.src}
+              alt=""
+              className="object-cover w-full h-screen"
+              isSelected={selectedIndex === index}
+            ></LoadedFocusImage>
+          </CarouselItem>
+        ))}
       </CarouselContent>
       {/* 如果是大圖輪播，通常會隱藏左右按鈕，或者放在圖片邊緣 */}
       {/* <CarouselPrevious className="left-4" />
