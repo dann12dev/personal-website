@@ -19,13 +19,13 @@ const LoadedFocusImage = ({ src, alt, className, isSelected }: LoadedFocusImageP
         onLoad={() => setIsLoaded(true)}
         // style={{ transformOrigin: focusPoint }}
         className={cn(
-          "transition-all duration-[2000ms] ease-out",
+          "transition-all duration-[6000ms] ease-out",
           className,
           // 初始狀態：縮放 1.2 倍（預備縮小聚焦）或 1.0 倍（準備放大）
           // 這裡示範：載入後從 1.2 倍 縮小到 1.05 倍，產生一種從遠處聚焦的視覺感
           isLoaded && isSelected
-            ? "scale-105 opacity-100 blur-0"
-            : "scale-125 opacity-0 blur-md",
+            ? "scale-110 blur-100"
+            : "scale-100 blur-90",
         )}
       />
     </>

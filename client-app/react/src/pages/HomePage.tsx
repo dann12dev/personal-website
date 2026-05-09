@@ -12,6 +12,7 @@ import ScrollReveal from "@/components/common/ScrollReveal";
 import { useHeaderMode } from "@/hooks/useHeaderMode";
 import LoadedFocusImage from "@/components/common/LoadedFocusImage";
 import type { CarouselApi } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 const bannerItems = [
   { src: "https://picsum.photos/1200/600?random=1" },
@@ -55,7 +56,7 @@ const HeroCarousel = () => {
 
     api.on("select", onSelect);
     onSelect(); // 初始化
-    
+
     return () => {
       api.off("select", onSelect);
     };
@@ -64,16 +65,20 @@ const HeroCarousel = () => {
   return (
     <Carousel
       setApi={setApi}
-      opts={{ loop: true, duration: 30 }}  // duration數值越小，切換動作觸發越快（預設通常是 25-30）
-      plugins={[Autoplay({ delay: 8000 }), Fade()]}
-      className="m-0"
+      opts={{ loop: true, duration: 60 }}
+      plugins={[
+        Autoplay({
+          delay: 8000,
+          stopOnFocusIn: false,
+          stopOnMouseEnter: false,
+        }),
+        Fade(),
+      ]}
+      className="m-0 size-full"
     >
-      <CarouselContent className="ml-0">
+      <CarouselContent className="m-0">
         {bannerItems.map((item, index) => (
-          <CarouselItem
-            className="pl-0 transition-opacity duration-1000"
-            key={index}
-          >
+          <CarouselItem className={cn("p-0")} key={index}>
             <LoadedFocusImage
               src={item.src}
               alt=""
